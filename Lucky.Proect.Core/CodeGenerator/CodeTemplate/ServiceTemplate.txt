@@ -1,0 +1,31 @@
+﻿****************************************************************
+* Copyright (c) 2019 All Rights Reserved.
+*命名空间：{ServicesNamespace} 
+*文件名：  {ServicesNamespace}
+*创建人：  {Author}  
+*创建时间：{GeneratorTime}
+*描述      {Comment}
+*=======================================================================
+*修改标记
+*修改时间：{GeneratorTime}
+*修改人：  {Author}  
+*描述：
+*=======================================================================
+using Lucky.Core.IRepository;
+using Lucky.Core.IServices;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace {ServicesNamespace}
+{
+    public class {ModelName}Service: I{ModelName}Service
+    {
+        private readonly I{ModelName}Repository _repository;
+
+        public {ModelName}Service(I{ModelName}Repository repository)
+        {
+            _repository = repository;
+        }
+    }
+}

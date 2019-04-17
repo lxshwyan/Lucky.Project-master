@@ -1,0 +1,34 @@
+﻿****************************************************************
+* Copyright (c) 2019 All Rights Reserved.
+*命名空间：{RepositoryNamespace} 
+*文件名：  {RepositoryNamespace}
+*创建人：  {Author}  
+*创建时间：{GeneratorTime}
+*描述      {Comment}
+*=======================================================================
+*修改标记
+*修改时间：{GeneratorTime}
+*修改人：  {Author}  
+*描述：
+*=======================================================================
+using Lucky.Core.IRepository;
+using Lucky.Core.Models;
+using Microsoft.Extensions.Options;
+using System;
+
+namespace {RepositoryNamespace}
+{
+    public class {ModelName}Repository:BaseRepository<{ModelName},{KeyTypeName}>, I{ModelName}Repository
+    {
+        public {ModelName}Repository(IOptionsSnapshot<DbOpion> options)
+        {
+            _dbOpion =options.Get("CzarCms");
+            if (_dbOpion == null)
+            {
+                throw new ArgumentNullException(nameof(DbOpion));
+            }
+            _dbConnection = ConnectionFactory.CreateConnection(_dbOpion.DbType, _dbOpion.ConnectionString);
+        }
+
+    }
+}

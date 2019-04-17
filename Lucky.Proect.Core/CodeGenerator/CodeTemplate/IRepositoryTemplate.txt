@@ -1,0 +1,23 @@
+﻿/************************************************************************
+* Copyright (c) 2019 All Rights Reserved.
+*命名空间：{IRepositoryNamespace} 
+*文件名：  {IRepositoryNamespace}
+*创建人：  {Author}  
+*创建时间：{GeneratorTime}
+*描述      {Comment}
+*=======================================================================
+*修改标记
+*修改时间：{GeneratorTime}
+*修改人：  {Author}  
+*描述：
+************************************************************************/
+using Lucky.Core.Repository;
+using Lucky.Core.Models;
+using System;
+
+namespace {IRepositoryNamespace}
+{
+    public interface I{ModelName}Repository : IBaseRepository<{ModelName}, {KeyTypeName}>
+    {
+    }
+}

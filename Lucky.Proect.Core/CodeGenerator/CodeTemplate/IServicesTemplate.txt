@@ -1,0 +1,23 @@
+﻿/************************************************************************
+* Copyright (c) 2019 All Rights Reserved.
+*命名空间：{IServicesNamespace} 
+*文件名：  {IServicesNamespace}
+*创建人：  {Author}  
+*创建时间：{GeneratorTime}
+*描述      {Comment}
+*=======================================================================
+*修改标记
+*修改时间：{GeneratorTime}
+*修改人：  {Author}  
+*描述：
+************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace {IServicesNamespace}
+{
+    public interface I{ModelName}Service
+    {
+    }
+}
