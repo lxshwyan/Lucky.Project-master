@@ -19,7 +19,7 @@ namespace Lucky.Project.Web.Middleware
         public async Task Invoke(HttpContext context)
         {
             string ip = context.Connection.RemoteIpAddress.ToString(); 
-            _logger.LogInformation($"当前登录时间：{DateTime.Now.ToString()}  User IP：{ip}");
+       
             if (context.Request.Path.ToString().Contains("lxsh"))
             {
                 context.Response.ContentType = "text/plain;charset=UTF-8";

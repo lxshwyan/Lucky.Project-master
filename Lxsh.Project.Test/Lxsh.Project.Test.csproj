@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lucky.Proect.Core\Lucky.Proect.Core.csproj" />
+    <ProjectReference Include="..\Lucky.Project.Web\Lucky.Project.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

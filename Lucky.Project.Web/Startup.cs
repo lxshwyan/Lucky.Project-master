@@ -36,6 +36,10 @@ using Microsoft.Extensions.FileProviders;
 using Lucky.Project.Web.Models;
 using AspectCore.Extensions.DependencyInjection;
 using Lucky.Project.Web.Middleware;
+using Lucky.Project.Web.Quarzs;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
 
 namespace Lucky.Project.Web
 {
@@ -135,14 +139,20 @@ namespace Lucky.Project.Web
             services.AddSingleton<IRegisterApplicationService, RegisterApplicationService>();
             //services.AddScoped<IhubContextRegister, hubContextRegister>();
             EnginContext.Initialize(new GeneralEngine(services.BuildServiceProvider()));
+             
 
-             return services.BuildAspectInjectorProvider();
+            services.AddTransient<UserInfoSyncjob>();      // 这里使用瞬时依赖注入
+            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();//注册ISchedulerFactory的实例。
+            services.AddSingleton<QuartzStartup>();
+            services.AddSingleton<IJobFactory,IOCJobFactory>();
+
+            return services.BuildAspectInjectorProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,IHubContext<ChatHub> chatHub,IApplicationLifetime appLifetime )
         {
-        
+          //  app.UseWelcomePage();  //结束
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -247,11 +257,13 @@ namespace Lucky.Project.Web
                   template: "{area:exists}/{controller=Login}/{action=LoginIndex}/{id?}"
                 );
            });
-
+         var quartz = app.ApplicationServices.GetRequiredService<QuartzStartup>();
+          
             #region 它能用来处理网站启动后，以及停止网站的任务。
-              ILogger _logger = loggerFactory.CreateLogger<Startup>();
+           ILogger _logger = loggerFactory.CreateLogger<Startup>();
             appLifetime.ApplicationStarted.Register(() =>
             {
+                      quartz.Start().Wait();
                _logger.LogInformation("Moonglade started.");
             });
             appLifetime.ApplicationStopping.Register(() =>
@@ -260,6 +272,7 @@ namespace Lucky.Project.Web
               });
             appLifetime.ApplicationStopped.Register(() =>
             {
+               quartz.Stop();
                 _logger.LogInformation("Moonglade stopped.");
             });
             #endregion

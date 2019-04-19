@@ -14,7 +14,7 @@
 using Lucky.Proect.Core;
 using Lucky.Proect.Core.CodeGenerator;
 using Lucky.Proect.Core.DapperHelper;
-using Lucky.Proect.Core.Model;
+using Lucky.Proect.Core.Model;       
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -50,7 +50,7 @@ namespace Lxsh.Project.Test
             }); 
             services.Configure<ConfigOption>("LuckyConfig", GetConfiguration().GetSection("ConfigOption"));
             services.AddScoped<CodeGenerator>();
-          
+         
             return services.BuildServiceProvider(); //构建服务提供程序
         }
         public static IConfiguration GetConfiguration()

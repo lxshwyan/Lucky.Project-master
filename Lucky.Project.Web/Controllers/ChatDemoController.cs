@@ -17,18 +17,15 @@ namespace Lucky.Project.Web.Controllers
         private IHubContext<ChatHub> _hubContext;
         private IApplicationLifetime applicationLifetime;
         private ILogger<ChatDemoController> logger;
-        private IConfiguration _configuration;
-
-       
-
+        private IConfiguration _configuration;         
         public ChatDemoController(IHubContext<ChatHub> hubContext, IApplicationLifetime appLifetime,
             IConfiguration configuration,
-            ILogger<ChatDemoController> logger)
+            ILogger<ChatDemoController>  logger)
         {
             this._hubContext = hubContext;
             this.applicationLifetime = appLifetime; 
             this.logger = logger;
-            this._configuration = configuration;
+            this._configuration = configuration;    
         }
         public IActionResult Index()
         {

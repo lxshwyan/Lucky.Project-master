@@ -28,8 +28,17 @@ namespace Lucky.Project.Web
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public T Resolve<T>() where T:class
-        {
+        {   
             return _serviceProvider.GetService<T>();
+        }
+        /// <summary>
+        /// 构建类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public object Resolve(Type type) 
+        {
+            return _serviceProvider.GetService(type);
         }
     }
 }

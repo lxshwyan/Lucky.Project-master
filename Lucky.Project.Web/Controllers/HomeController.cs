@@ -18,13 +18,17 @@ namespace Lucky.Project.Web.Controllers
    
     public class HomeController : BaseController
     {
+            
         private readonly   IAdminAuthService _adminAuthService;
         private readonly IBaseUserRoleService _BaseUserRoleService;
         private readonly IBaseMenusRoleService _BaseMenusRoleService;
          private readonly IBaseMenusService _BaseMenusService;
+
+     
+
         public HomeController(ICache cache,IAdminAuthService adminAuthService
-            ,IBaseUserRoleService BaseUserRoleService,IBaseMenusRoleService BaseMenusRoleService,
-            IBaseMenusService BaseMenusService)
+            ,IBaseUserRoleService BaseUserRoleService,IBaseMenusRoleService BaseMenusRoleService
+          , IBaseMenusService BaseMenusService )
         {
             _adminAuthService = adminAuthService;
             _BaseUserRoleService = BaseUserRoleService;
@@ -64,6 +68,7 @@ namespace Lucky.Project.Web.Controllers
 
         public List<MenuNavView> getMyCategories()
         {
+
             Base_User user = _adminAuthService.getCurrentUser();
             if (user.IsAdmin)
             {

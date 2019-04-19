@@ -1,6 +1,7 @@
 using Lucky.Proect.Core.CodeGenerator;
 using Lucky.Proect.Core.DapperHelper;
 using Lucky.Proect.Core.Model;
+
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Xunit;
@@ -18,5 +19,6 @@ namespace Lxsh.Project.Test
              codeGenerator.GenerateTemplateCodesFromDatabase(true);
             Assert.Equal("SQLServer", DatabaseType.SqlServer.ToString(), ignoreCase: true);
         }
+       
     }
 }
